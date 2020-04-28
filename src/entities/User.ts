@@ -7,8 +7,11 @@ export class User {
 	id: string;
 
 	@Field()
+	@Property({ required: true, unique: true })
+	email: string;
+
 	@Property({ required: true })
-	username: String;
+	hash: string;
 }
 
 export const UserModel = getModelForClass(User);

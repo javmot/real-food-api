@@ -3,6 +3,18 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input CreateRecipeCategoryInput {
+	title: String!
+}
+
+input CreateRecipeInput {
+	title: String!
+	time: String!
+	categoryId: String!
+	steps: [RecipeStepInput!]!
+	ingredients: [FoodItemInput!]!
+}
+
 """
 The bedca Food Group
 """
@@ -19,10 +31,60 @@ type FoodItem {
 	name: String!
 }
 
+input FoodItemInput {
+	id: String!
+	name: String!
+}
+
+type Mutation {
+	signup(input: UserInput!): User!
+	createRecipeCategory(input: CreateRecipeCategoryInput!): RecipeCategory!
+	createRecipe(input: CreateRecipeInput!): Recipe!
+}
+
 type Query {
 	me: User!
+	signin(input: UserInput!): User
 	foodGroups: [FoodGroup!]!
 	foodGroup(input: String!): [FoodItem!]!
+	recipes: [Recipe!]!
+	recipesByCategory(input: String!): [Recipe!]!
+}
+
+"""
+The Recipe model
+"""
+type Recipe {
+	id: ID!
+	title: String!
+	time: String!
+	img: String!
+	categoryId: String!
+	steps: [RecipeStep!]!
+	ingredients: [FoodItem!]!
+	userId: String!
+}
+
+"""
+The categories of the recipes
+"""
+type RecipeCategory {
+	id: ID!
+	title: String!
+}
+
+"""
+Steps Of the Recipe
+"""
+type RecipeStep {
+	title: String!
+	img: String!
+	description: String!
+}
+
+input RecipeStepInput {
+	title: String!
+	description: String!
 }
 
 """
@@ -30,5 +92,10 @@ The User model
 """
 type User {
 	id: ID!
-	username: String!
+	email: String!
+}
+
+input UserInput {
+	email: String!
+	password: String!
 }

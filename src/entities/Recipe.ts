@@ -25,7 +25,7 @@ export class Recipe {
 
 	@Field((_type) => String)
 	@Property({ ref: RecipeCategory, required: true })
-	category_id: Ref<RecipeCategory>;
+	categoryId: Ref<RecipeCategory>;
 
 	@Field((_type) => RecipeStep)
 	@Property({ required: true })
@@ -37,7 +37,7 @@ export class Recipe {
 
 	@Field((_type) => String)
 	@Property({ ref: User, required: true })
-	user_id: Ref<User>;
+	userId: Ref<User>;
 }
 
 export const RecipeModel = getModelForClass(Recipe);

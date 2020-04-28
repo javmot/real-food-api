@@ -6,8 +6,8 @@ export class RecipeStep {
 	title: String;
 
 	@Field()
-	img: String;
+	img?: String;
 
 	@Field()
-	description: String;
+	description?: String;
 }

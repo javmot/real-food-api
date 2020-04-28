@@ -3,22 +3,30 @@ import Express from "express";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { dbConnect } from "./config/db";
-import { dataSources } from "./config/context";
+import { dataSources, context } from "./config/context";
 
 // resolvers
 import UserResolver from "./resolvers/User";
 import FoodGroupResolver from "./resolvers/FoodGroup";
 import FoodItemResolver from "./resolvers/FoodItem";
+import RecipeCategoryResolver from "./resolvers/RecipeCategory";
+import RecipeResolver from "./resolvers/Recipe";
 
 const main = async () => {
 	const schema = await buildSchema({
-		resolvers: [UserResolver, FoodGroupResolver, FoodItemResolver],
+		resolvers: [
+			UserResolver,
+			FoodGroupResolver,
+			FoodItemResolver,
+			RecipeResolver,
+			RecipeCategoryResolver,
+		],
 		emitSchemaFile: true,
 		validate: false,
 	});
 	await dbConnect();
 
-	const server = new ApolloServer({ schema, dataSources });
+	const server = new ApolloServer({ schema, dataSources, context });
 	const app = Express();
 	server.applyMiddleware({ app });
 	app.listen({ port: 3333 }, () =>

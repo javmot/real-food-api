@@ -6,6 +6,7 @@ import BedcaAPI from "../dataSources/BedcaAPI";
 
 export interface Context {
 	headers: IncomingHttpHeaders;
+	user: string;
 	req: Request;
 	res: Response;
 	dataSources: FoodDataSources;
@@ -14,3 +15,11 @@ export interface Context {
 export const dataSources = (): DataSources<FoodDataSources> => ({
 	bedcaAPI: new BedcaAPI(),
 });
+
+export const context = (req: Request, res: Response) => {
+	return {
+		user: "5ea7f90bc613a8b3ecf26cd2",
+		req,
+		res,
+	};
+};
