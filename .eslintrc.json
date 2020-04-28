@@ -21,12 +21,15 @@
 		"sourceType": "module"
 	},
 	"plugins": ["@typescript-eslint"],
+	"ignorePatterns": ["node_modules/"],
 	"rules": {
 		"prettier/prettier": "error",
 		"no-console": "warn",
 		"no-unused-vars": "off",
 		"class-methods-use-this": "off",
 		"import/no-extraneous-dependencies": "off",
+		"camelcase": "off",
+		"import/prefer-default-export": "off",
 		"import/extensions": [
 			"error",
 			"ignorePackages",

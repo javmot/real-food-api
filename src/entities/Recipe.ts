@@ -1,10 +1,10 @@
 import { ObjectType, Field, ID } from "type-graphql";
 import { prop as Property, getModelForClass } from "@typegoose/typegoose";
 import { Ref } from "../types";
-import { User } from "../entities/User";
-import { RecipeStep } from "../entities/RecipeStep";
-import { FoodItem } from "../entities/FoodItem";
-import { RecipeCategory } from "../entities/RecipeCategory";
+import { User } from "./User";
+import { RecipeStep } from "./RecipeStep";
+import { FoodItem } from "./FoodItem";
+import { RecipeCategory } from "./RecipeCategory";
 
 @ObjectType({ description: "The Recipe model" })
 export class Recipe {
