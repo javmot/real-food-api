@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from "type-graphql";
-import { prop as Property, getModelForClass } from "@typegoose/typegoose";
+import { prop, getModelForClass } from "@typegoose/typegoose";
 import { Ref } from "../types";
 import { User } from "./User";
 import { RecipeStep } from "./RecipeStep";
@@ -12,31 +12,31 @@ export class Recipe {
 	id: string;
 
 	@Field()
-	@Property({ required: true })
+	@prop({ required: true })
 	title: string;
 
 	@Field()
-	@Property()
+	@prop()
 	time: string;
 
 	@Field()
-	@Property()
+	@prop()
 	img?: string;
 
 	@Field((_type) => String)
-	@Property({ ref: RecipeCategory, required: true })
+	@prop({ ref: RecipeCategory, required: true })
 	categoryId: Ref<RecipeCategory>;
 
 	@Field((_type) => RecipeStep)
-	@Property({ required: true })
+	@prop({ required: true, ref: RecipeStep })
 	steps: RecipeStep[];
 
 	@Field((_type) => FoodItem)
-	@Property({ required: true })
+	@prop({ required: true })
 	ingredients: FoodItem[];
 
 	@Field((_type) => String)
-	@Property({ ref: User, required: true })
+	@prop({ ref: User, required: true })
 	userId: Ref<User>;
 }
 

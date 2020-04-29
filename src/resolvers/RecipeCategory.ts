@@ -1,4 +1,4 @@
-import { Resolver, Mutation, Arg } from "type-graphql";
+import { Resolver, Mutation, Arg, FieldResolver, Root } from "type-graphql";
 import {
 	RecipeCategory,
 	RecipeCategoryModel,
@@ -12,5 +12,10 @@ export default class RecipeCategoryResolver {
 		@Arg("input") categoryInput: CreateRecipeCategoryInput
 	) {
 		return RecipeCategoryModel.create(categoryInput);
+	}
+
+	@FieldResolver()
+	id(@Root() recipeCategory: any) {
+		return recipeCategory._id;
 	}
 }

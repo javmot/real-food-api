@@ -7,7 +7,9 @@ const getFoodValues = (foodValues: Array<any>, profile: number) => {
 	const infoProfile = getInfoProfile(profile);
 
 	return infoProfile.length
-		? foodValues.filter((foodValue) => infoProfile.includes(foodValue.c_id[0]))
+		? infoProfile.map((valueId) =>
+				foodValues.find((value) => value.c_id[0] === valueId)
+		  )
 		: foodValues;
 };
 

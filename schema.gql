@@ -73,6 +73,7 @@ type Query {
 	foodGroup(input: String!): [FoodItem!]!
 	recipes: [Recipe!]!
 	recipesByCategory(input: String!): [Recipe!]!
+	recipeSteps(input: String!): [RecipeStep!]!
 	foodInfo(input: String!): FoodInfo!
 }
 
@@ -102,6 +103,7 @@ type RecipeCategory {
 Steps Of the Recipe
 """
 type RecipeStep {
+	id: ID!
 	title: String!
 	img: String!
 	description: String!

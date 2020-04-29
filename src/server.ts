@@ -11,6 +11,7 @@ import FoodGroupResolver from "./resolvers/FoodGroup";
 import FoodItemResolver from "./resolvers/FoodItem";
 import RecipeCategoryResolver from "./resolvers/RecipeCategory";
 import RecipeResolver from "./resolvers/Recipe";
+import RecipeStepResolver from "./resolvers/RecipeStep";
 import FoodInfoResolver from "./resolvers/FoodInfo";
 import FoodValueResolver from "./resolvers/FoodValue";
 
@@ -24,6 +25,7 @@ const main = async () => {
 			RecipeCategoryResolver,
 			FoodInfoResolver,
 			FoodValueResolver,
+			RecipeStepResolver,
 		],
 		emitSchemaFile: true,
 		validate: false,

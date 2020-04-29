@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from "type-graphql";
-import { prop as Property, getModelForClass } from "@typegoose/typegoose";
+import { prop, getModelForClass } from "@typegoose/typegoose";
 
 @ObjectType({ description: "The User model" })
 export class User {
@@ -7,10 +7,10 @@ export class User {
 	id: string;
 
 	@Field()
-	@Property({ required: true, unique: true })
+	@prop({ required: true, unique: true })
 	email: string;
 
-	@Property({ required: true })
+	@prop({ required: true })
 	hash: string;
 }
 

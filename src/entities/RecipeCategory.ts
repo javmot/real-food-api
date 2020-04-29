@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from "type-graphql";
-import { prop as Property, getModelForClass } from "@typegoose/typegoose";
+import { prop, getModelForClass } from "@typegoose/typegoose";
 
 @ObjectType({ description: "The categories of the recipes" })
 export class RecipeCategory {
@@ -7,7 +7,7 @@ export class RecipeCategory {
 	id: string;
 
 	@Field()
-	@Property({ required: true })
+	@prop({ required: true })
 	title: string;
 }
 
