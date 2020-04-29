@@ -7,7 +7,7 @@
 	"scripts": {
 		"server": "ts-node src/server.ts",
 		"pre-commit": "pretty-quick --staged && lint-staged",
-		"lint": "pretty-quick && eslint src/**/*.{ts,js} --fix"
+		"lint": "pretty-quick && eslint src/**/*.{ts,js} --cache --fix"
 	},
 	"dependencies": {
 		"apollo-datasource-rest": "^0.8.1",
