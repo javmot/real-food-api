@@ -6,5 +6,5 @@ export class FoodItem {
 	id: string;
 
 	@Field()
-	name: String;
+	name: string;
 }

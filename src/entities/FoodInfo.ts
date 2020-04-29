@@ -9,21 +9,9 @@ export class FoodInfo {
 	@Field()
 	name: string;
 
-	@Field()
-	energy: FoodValue;
-
-	@Field()
-	protein: FoodValue;
-
-	@Field()
-	fatMonounsaturated: FoodValue;
-
-	@Field()
-	fatPolyunsaturated: FoodValue;
-
-	@Field()
-	fatSaturated: FoodValue;
-
-	@Field()
-	cholesterol: FoodValue;
+	@Field((_type) => [FoodValue], {
+		description: `Param profile defines detail info level:
+			0 - Energy, 1 - Macros, 2 - Detailed, 3 - All (default)`,
+	})
+	foodValues: (profile: number) => FoodValue[];
 }

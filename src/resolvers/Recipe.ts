@@ -3,7 +3,7 @@ import { Recipe, RecipeModel } from "../entities/Recipe";
 import { CreateRecipeInput } from "../inputs/Recipe";
 import { Context } from "../config/context";
 
-@Resolver(Recipe)
+@Resolver(() => Recipe)
 export default class RecipeResolver {
 	@Query((_returns) => [Recipe], { nullable: false })
 	recipes() {

@@ -29,12 +29,12 @@ The bedca Food Item Info
 type FoodInfo {
 	id: ID!
 	name: String!
-	energy: FoodValue!
-	protein: FoodValue!
-	fatMonounsaturated: FoodValue!
-	fatPolyunsaturated: FoodValue!
-	fatSaturated: FoodValue!
-	cholesterol: FoodValue!
+
+	"""
+	Param profile defines detail info level:
+				0 - Energy, 1 - Macros, 2 - Detailed, 3 - All (default)
+	"""
+	foodValues(profile: Float = 3): [FoodValue!]!
 }
 
 """
@@ -54,8 +54,10 @@ input FoodItemInput {
 The bedca Food Value
 """
 type FoodValue {
-	unit: ID!
-	total: String!
+	id: ID!
+	name: String
+	unit: String
+	total: Float
 }
 
 type Mutation {

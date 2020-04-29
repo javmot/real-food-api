@@ -8,7 +8,7 @@ export class RecipeCategory {
 
 	@Field()
 	@Property({ required: true })
-	title: String;
+	title: string;
 }
 
 export const RecipeCategoryModel = getModelForClass(RecipeCategory);

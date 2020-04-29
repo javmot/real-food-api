@@ -3,11 +3,11 @@ import { ObjectType, Field } from "type-graphql";
 @ObjectType({ description: "Steps Of the Recipe" })
 export class RecipeStep {
 	@Field()
-	title: String;
+	title: string;
 
 	@Field()
-	img?: String;
+	img?: string;
 
 	@Field()
-	description?: String;
+	description?: string;
 }

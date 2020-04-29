@@ -10,5 +10,5 @@ export class FoodItemInput implements Partial<FoodItem> {
 
 	@Field()
 	@Length(1, 255)
-	name: String;
+	name: string;
 }

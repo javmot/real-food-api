@@ -13,15 +13,15 @@ export class Recipe {
 
 	@Field()
 	@Property({ required: true })
-	title: String;
+	title: string;
 
 	@Field()
 	@Property()
-	time: String;
+	time: string;
 
 	@Field()
 	@Property()
-	img?: String;
+	img?: string;
 
 	@Field((_type) => String)
 	@Property({ ref: RecipeCategory, required: true })

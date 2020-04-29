@@ -5,7 +5,7 @@ import {
 } from "../entities/RecipeCategory";
 import { CreateRecipeCategoryInput } from "../inputs/RecipeCategory";
 
-@Resolver(RecipeCategory)
+@Resolver(() => RecipeCategory)
 export default class RecipeCategoryResolver {
 	@Mutation((_returns) => RecipeCategory, { nullable: false })
 	async createRecipeCategory(

@@ -2,7 +2,7 @@ import { Resolver, Arg, Query, Ctx, FieldResolver, Root } from "type-graphql";
 import { FoodItem } from "../entities/FoodItem";
 import { Context } from "../config/context";
 
-@Resolver(FoodItem)
+@Resolver(() => FoodItem)
 export default class FoodItemResolver {
 	@Query((_returns) => [FoodItem], { nullable: false })
 	foodGroup(@Arg("input") groupId: string, @Ctx() { dataSources }: Context) {

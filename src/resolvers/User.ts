@@ -7,7 +7,7 @@ const userCheckPass = async (user: User, password: string) => {
 	return bcrypt.compare(password, user.hash);
 };
 
-@Resolver(User)
+@Resolver(() => User)
 export default class UserResolver {
 	@Query((_returns) => User, { nullable: false })
 	me() {

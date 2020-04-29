@@ -6,5 +6,5 @@ export class FoodGroup {
 	id: string;
 
 	@Field()
-	name: String;
+	name: string;
 }
