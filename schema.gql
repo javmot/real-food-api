@@ -24,6 +24,20 @@ type FoodGroup {
 }
 
 """
+The bedca Food Item Info
+"""
+type FoodInfo {
+	id: ID!
+	name: String!
+	energy: FoodValue!
+	protein: FoodValue!
+	fatMonounsaturated: FoodValue!
+	fatPolyunsaturated: FoodValue!
+	fatSaturated: FoodValue!
+	cholesterol: FoodValue!
+}
+
+"""
 The bedca Food Item
 """
 type FoodItem {
@@ -34,6 +48,14 @@ type FoodItem {
 input FoodItemInput {
 	id: String!
 	name: String!
+}
+
+"""
+The bedca Food Value
+"""
+type FoodValue {
+	unit: ID!
+	total: String!
 }
 
 type Mutation {
@@ -49,6 +71,7 @@ type Query {
 	foodGroup(input: String!): [FoodItem!]!
 	recipes: [Recipe!]!
 	recipesByCategory(input: String!): [Recipe!]!
+	foodInfo(input: String!): FoodInfo!
 }
 
 """

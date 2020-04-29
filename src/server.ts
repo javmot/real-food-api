@@ -1,6 +1,6 @@
+import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
-import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { dbConnect } from "./config/db";
 import { dataSources, context } from "./config/context";
@@ -11,6 +11,7 @@ import FoodGroupResolver from "./resolvers/FoodGroup";
 import FoodItemResolver from "./resolvers/FoodItem";
 import RecipeCategoryResolver from "./resolvers/RecipeCategory";
 import RecipeResolver from "./resolvers/Recipe";
+import FoodInfoResolver from "./resolvers/FoodInfo";
 
 const main = async () => {
 	const schema = await buildSchema({
@@ -20,11 +21,12 @@ const main = async () => {
 			FoodItemResolver,
 			RecipeResolver,
 			RecipeCategoryResolver,
+			FoodInfoResolver,
 		],
 		emitSchemaFile: true,
 		validate: false,
 	});
-	await dbConnect();
+	dbConnect();
 
 	const server = new ApolloServer({ schema, dataSources, context });
 	const app = Express();

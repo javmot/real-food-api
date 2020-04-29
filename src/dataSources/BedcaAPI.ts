@@ -32,6 +32,7 @@ export default class BedcaAPI extends RESTDataSource {
 	getFood(foodId: string) {
 		return this.post("procquery.php", getFoodQuery(foodId), { headers })
 			.then(parseStringPromise)
-			.then(getFood);
+			.then(getFood)
+			.then((food) => food[0]);
 	}
 }
