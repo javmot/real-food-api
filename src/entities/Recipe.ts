@@ -1,11 +1,12 @@
 import { ObjectType, Field, ID } from "type-graphql";
-import { prop, arrayProp, getModelForClass } from "@typegoose/typegoose";
+import { prop, arrayProp, index, getModelForClass } from "@typegoose/typegoose";
 import { Ref } from "../types";
 import { User } from "./User";
 import { RecipeStep } from "./RecipeStep";
 import { FoodItem } from "./FoodItem";
 import { RecipeCategory } from "./RecipeCategory";
 
+@index({ title: 1, userId: 1 }, { unique: true })
 @ObjectType({ description: "The Recipe model" })
 export class Recipe {
 	@Field(() => ID)
