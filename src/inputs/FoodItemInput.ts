@@ -6,9 +6,9 @@ import { FoodItem } from "../entities/FoodItem";
 export class FoodItemInput implements Partial<FoodItem> {
 	@Field()
 	@Length(1, 255)
-	id: string;
+	id!: string;
 
 	@Field()
 	@Length(1, 255)
-	name: string;
+	name!: string;
 }

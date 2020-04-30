@@ -2,8 +2,8 @@ import { ObjectType, Field, Float, ID } from "type-graphql";
 
 @ObjectType({ description: "The bedca Food Value" })
 export class FoodValue {
-	@Field(() => ID)
-	id: string;
+	@Field((_type) => ID)
+	id!: string;
 
 	@Field({ nullable: true })
 	name?: string;
@@ -11,6 +11,6 @@ export class FoodValue {
 	@Field({ nullable: true })
 	unit?: string;
 
-	@Field(() => Float, { nullable: true })
+	@Field((_type) => Float, { nullable: true })
 	total?: number;
 }

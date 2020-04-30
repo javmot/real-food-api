@@ -6,14 +6,14 @@ import { dbConnect } from "./config/db";
 import { dataSources, context } from "./config/context";
 
 // resolvers
-import UserResolver from "./resolvers/User";
-import FoodGroupResolver from "./resolvers/FoodGroup";
-import FoodItemResolver from "./resolvers/FoodItem";
-import RecipeCategoryResolver from "./resolvers/RecipeCategory";
-import RecipeResolver from "./resolvers/Recipe";
-import RecipeStepResolver from "./resolvers/RecipeStep";
-import FoodInfoResolver from "./resolvers/FoodInfo";
-import FoodValueResolver from "./resolvers/FoodValue";
+import UserResolver from "./resolvers/UserResolver";
+import FoodGroupResolver from "./resolvers/FoodGroupResolver";
+import FoodItemResolver from "./resolvers/FoodItemResolver";
+import RecipeCategoryResolver from "./resolvers/RecipeCategoryResolver";
+import RecipeResolver from "./resolvers/RecipeResolver";
+import RecipeStepResolver from "./resolvers/RecipeStepResolver";
+import FoodInfoResolver from "./resolvers/FoodInfoResolver";
+import FoodValueResolver from "./resolvers/FoodValueResolver";
 
 const main = async () => {
 	const schema = await buildSchema({

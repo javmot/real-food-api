@@ -1,31 +1,18 @@
-import {
-	Resolver,
-	Arg,
-	Query,
-	Mutation,
-	Ctx,
-	FieldResolver,
-	Root,
-} from "type-graphql";
+import { Resolver, Arg, Query, Mutation, Ctx } from "type-graphql";
 import { Recipe, RecipeModel } from "../entities/Recipe";
-import { CreateRecipeInput } from "../inputs/Recipe";
+import { CreateRecipeInput } from "../inputs/RecipeInput";
 import { Context } from "../config/context";
 
-@Resolver(() => Recipe)
+@Resolver((_of) => Recipe)
 export default class RecipeResolver {
 	@Query((_returns) => [Recipe], { nullable: false })
 	recipes() {
-		return RecipeModel.find().lean().exec();
+		return RecipeModel.find().exec();
 	}
 
 	@Query((_returns) => [Recipe], { nullable: false })
 	recipesByCategory(@Arg("input") categoryId: string) {
-		return RecipeModel.find({ category_id: categoryId }).lean().exec();
-	}
-
-	@FieldResolver()
-	id(@Root() recipe: any) {
-		return recipe._id;
+		return RecipeModel.find({ category_id: categoryId }).exec();
 	}
 
 	@Mutation((_returns) => Recipe, { nullable: false })

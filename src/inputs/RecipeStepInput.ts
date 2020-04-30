@@ -8,6 +8,9 @@ export class RecipeStepInput implements Partial<RecipeStep> {
 	@Length(1, 255)
 	title: string;
 
-	@Field()
+	@Field({ nullable: true })
 	description?: string;
+
+	@Field({ nullable: true })
+	img?: string;
 }

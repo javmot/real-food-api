@@ -1,7 +1,7 @@
 import { Resolver, FieldResolver, Root } from "type-graphql";
 import { FoodValue } from "../entities/FoodValue";
 
-@Resolver(() => FoodValue)
+@Resolver((_of) => FoodValue)
 export default class FoodValueResolver {
 	@FieldResolver()
 	id(@Root() foodValue: any) {

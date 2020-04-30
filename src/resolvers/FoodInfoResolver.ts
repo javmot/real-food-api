@@ -13,7 +13,7 @@ const getFoodValues = (foodValues: Array<any>, profile: number) => {
 		: foodValues;
 };
 
-@Resolver(() => FoodInfo)
+@Resolver((_of) => FoodInfo)
 export default class FoodInfoResolver {
 	@Query((_returns) => FoodInfo, { nullable: false })
 	foodInfo(@Arg("input") foodId: string, @Ctx() { dataSources }: Context) {
@@ -22,12 +22,12 @@ export default class FoodInfoResolver {
 
 	@FieldResolver()
 	name(@Root() foodInfo: any) {
-		return foodInfo.f_ori_name[0];
+		return foodInfo.name || foodInfo.f_ori_name[0];
 	}
 
 	@FieldResolver()
 	id(@Root() foodInfo: any) {
-		return foodInfo.f_id[0];
+		return foodInfo.id || foodInfo.f_id[0];
 	}
 
 	@FieldResolver()

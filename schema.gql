@@ -84,7 +84,7 @@ type Recipe {
 	id: ID!
 	title: String!
 	time: String!
-	img: String!
+	img: String
 	categoryId: String!
 	steps: [RecipeStep!]!
 	ingredients: [FoodItem!]!
@@ -105,13 +105,14 @@ Steps Of the Recipe
 type RecipeStep {
 	id: ID!
 	title: String!
-	img: String!
-	description: String!
+	img: String
+	description: String
 }
 
 input RecipeStepInput {
 	title: String!
-	description: String!
+	description: String
+	img: String
 }
 
 """

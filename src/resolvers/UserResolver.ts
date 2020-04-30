@@ -1,13 +1,13 @@
 import { Resolver, Arg, Query, Mutation } from "type-graphql";
 import bcrypt from "bcrypt";
 import { User, UserModel } from "../entities/User";
-import { UserInput } from "../inputs/User";
+import { UserInput } from "../inputs/UserInput";
 
 const userCheckPass = async (user: User, password: string) => {
 	return bcrypt.compare(password, user.hash);
 };
 
-@Resolver(() => User)
+@Resolver((_of) => User)
 export default class UserResolver {
 	@Query((_returns) => User, { nullable: false })
 	me() {

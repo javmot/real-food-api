@@ -6,5 +6,5 @@ import { RecipeCategory } from "../entities/RecipeCategory";
 export class CreateRecipeCategoryInput implements Partial<RecipeCategory> {
 	@Field()
 	@Length(1, 255)
-	title: string;
+	title!: string;
 }
