@@ -71,6 +71,7 @@ type Query {
 	signin(input: UserInput!): User
 	foodGroups: [FoodGroup!]!
 	foodGroup(input: String!): [FoodItem!]!
+	recipeCategories: [RecipeCategory!]!
 	recipes: [Recipe!]!
 	recipesByCategory(input: String!): [Recipe!]!
 	recipeSteps(input: String!): [RecipeStep!]!

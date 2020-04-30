@@ -8,7 +8,7 @@ export class RecipeCategory {
 	id?: string;
 
 	@Field()
-	@prop({ required: true })
+	@prop({ required: true, unique: true })
 	title: string;
 }
 
