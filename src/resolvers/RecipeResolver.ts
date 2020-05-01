@@ -1,8 +1,10 @@
+import { groupBy, map } from "lodash";
 import { Resolver, Arg, Query, Mutation, Ctx } from "type-graphql";
 import { Recipe, RecipeModel } from "../entities/Recipe";
 import { CreateRecipeInput } from "../inputs/RecipeInput";
 import { Context } from "../config/context";
-import { recipeInfoHook, mergeFoodValues } from "../hooks/recipeHooks";
+import BedcaAPI from "../dataSources/BedcaAPI";
+import { FoodItemInput } from "../inputs/FoodItemInput";
 
 @Resolver((_of) => Recipe)
 export default class RecipeResolver {
@@ -39,4 +41,31 @@ export default class RecipeResolver {
 			},
 		});
 	}
+}
+
+function mergeFoodValues(foodValues: any) {
+	const totalReducer = (memo: any, value: any) => {
+		return {
+			...memo,
+			total: memo.total + value.total,
+		};
+	};
+	const grouped = groupBy(foodValues, (value) => value.id);
+
+	return map(grouped, (group) => {
+		return group.reduce(totalReducer, {
+			bedcaId: group[0].bedcaId,
+			name: group[0].name,
+			unit: group[0].unit,
+			total: 0,
+		});
+	});
+}
+
+function recipeInfoHook(ingredients: Array<FoodItemInput>, bedcaApi: BedcaAPI) {
+	return Promise.all(
+		ingredients.map((ingredient) =>
+			bedcaApi.getFood(ingredient.id).then((foodInfo) => foodInfo.foodValues)
+		)
+	).then((values) => values.flat());
 }

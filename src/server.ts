@@ -13,7 +13,6 @@ import RecipeCategoryResolver from "./resolvers/RecipeCategoryResolver";
 import RecipeResolver from "./resolvers/RecipeResolver";
 import RecipeStepResolver from "./resolvers/RecipeStepResolver";
 import FoodInfoResolver from "./resolvers/FoodInfoResolver";
-import FoodValueResolver from "./resolvers/FoodValueResolver";
 
 const main = async () => {
 	const schema = await buildSchema({
@@ -24,7 +23,6 @@ const main = async () => {
 			RecipeResolver,
 			RecipeCategoryResolver,
 			FoodInfoResolver,
-			FoodValueResolver,
 			RecipeStepResolver,
 		],
 		emitSchemaFile: true,

@@ -11,3 +11,5 @@ export class FoodItem {
 	@prop({ required: true })
 	name!: string;
 }
+
+export interface FoodItemInterface extends FoodItem {}

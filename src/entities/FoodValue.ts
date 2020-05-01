@@ -12,13 +12,15 @@ export class FoodValue {
 
 	@Field({ nullable: true })
 	@prop()
-	name?: string;
+	name: string;
 
 	@Field({ nullable: true })
 	@prop()
-	unit?: string;
+	unit: string;
 
 	@Field((_type) => Float, { nullable: true })
 	@prop()
-	total?: number;
+	total: number;
 }
+
+export interface FoodValueInterface extends FoodValue {}
