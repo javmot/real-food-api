@@ -4,6 +4,7 @@ import { Ref } from "../types";
 import { User } from "./User";
 import { RecipeStep } from "./RecipeStep";
 import { FoodItem } from "./FoodItem";
+import { FoodInfo } from "./FoodInfo";
 import { RecipeCategory } from "./RecipeCategory";
 
 @index({ title: 1, userId: 1 }, { unique: true })
@@ -21,10 +22,6 @@ export class Recipe {
 	@prop({ required: true })
 	time!: string;
 
-	@Field({ nullable: true })
-	@prop()
-	img?: string;
-
 	@Field((_type) => String)
 	@prop({ ref: RecipeCategory, required: true })
 	categoryId!: Ref<RecipeCategory>;
@@ -36,6 +33,10 @@ export class Recipe {
 	@Field((_type) => FoodItem)
 	@arrayProp({ items: FoodItem, required: true })
 	ingredients!: FoodItem[];
+
+	@Field((_type) => FoodInfo, { nullable: true })
+	@prop({ type: FoodInfo })
+	info?: FoodInfo;
 
 	@Field((_type) => String)
 	@prop({ ref: User, required: true })

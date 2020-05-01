@@ -7,7 +7,6 @@ const headers = {
 };
 
 const getFood = (response: any): any => {
-	// console.dir(response, { depth: 3 });
 	return response.foodresponse.food;
 };
 

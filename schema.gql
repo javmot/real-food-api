@@ -28,7 +28,7 @@ The bedca Food Item Info
 """
 type FoodInfo {
 	id: ID!
-	name: String!
+	name: String
 
 	"""
 	Param profile defines detail info level:
@@ -55,6 +55,7 @@ The bedca Food Value
 """
 type FoodValue {
 	id: ID!
+	bedcaId: String!
 	name: String
 	unit: String
 	total: Float
@@ -73,6 +74,7 @@ type Query {
 	foodGroup(input: String!): [FoodItem!]!
 	recipeCategories: [RecipeCategory!]!
 	recipes: [Recipe!]!
+	recipe(id: String!): Recipe
 	recipesByCategory(input: String!): [Recipe!]!
 	recipeSteps(input: String!): [RecipeStep!]!
 	foodInfo(input: String!): FoodInfo!
@@ -85,10 +87,10 @@ type Recipe {
 	id: ID!
 	title: String!
 	time: String!
-	img: String
 	categoryId: String!
 	steps: [RecipeStep!]!
 	ingredients: [FoodItem!]!
+	info: FoodInfo
 	userId: String!
 }
 

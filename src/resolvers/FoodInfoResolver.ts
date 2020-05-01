@@ -8,7 +8,9 @@ const getFoodValues = (foodValues: Array<any>, profile: number) => {
 
 	return infoProfile.length
 		? infoProfile.map((valueId) =>
-				foodValues.find((value) => value.c_id[0] === valueId)
+				foodValues.find((value) => {
+					return (value.bedcaId || value.c_id[0]) === valueId;
+				})
 		  )
 		: foodValues;
 };
@@ -35,7 +37,10 @@ export default class FoodInfoResolver {
 		@Arg("profile", { nullable: true, defaultValue: 3 }) profile: number,
 		@Root() foodInfo: any
 	) {
-		const values = getFoodValues(foodInfo.foodvalue, profile);
+		const values = getFoodValues(
+			foodInfo.foodValues || foodInfo.foodvalue,
+			profile
+		);
 		return values;
 	}
 }
