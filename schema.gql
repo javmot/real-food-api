@@ -8,11 +8,11 @@ input CreateRecipeCategoryInput {
 }
 
 input CreateRecipeInput {
-	title: String!
-	time: String!
 	categoryId: String!
-	steps: [RecipeStepInput!]!
 	ingredients: [FoodItemInput!]!
+	steps: [RecipeStepInput!]!
+	time: String!
+	title: String!
 }
 
 """
@@ -27,14 +27,13 @@ type FoodGroup {
 The bedca Food Item Info
 """
 type FoodInfo {
-	id: ID!
-	name: String
-
 	"""
 	Param profile defines detail info level:
 				0 - Energy, 1 - Macros, 2 - Detailed, 3 - All (default)
 	"""
 	foodValues(profile: Float = 3): [FoodValue!]!
+	id: ID!
+	name: String
 }
 
 """
@@ -54,43 +53,43 @@ input FoodItemInput {
 The bedca Food Value
 """
 type FoodValue {
-	id: ID!
 	bedcaId: String!
+	id: ID!
 	name: String
-	unit: String
 	total: Float
+	unit: String
 }
 
 type Mutation {
-	signup(input: UserInput!): User!
-	createRecipeCategory(input: CreateRecipeCategoryInput!): RecipeCategory!
 	createRecipe(input: CreateRecipeInput!): Recipe!
+	createRecipeCategory(input: CreateRecipeCategoryInput!): RecipeCategory!
+	signup(input: UserInput!): User!
 }
 
 type Query {
-	me: User!
-	signin(input: UserInput!): User
-	foodGroups: [FoodGroup!]!
 	foodGroup(input: String!): [FoodItem!]!
+	foodGroups: [FoodGroup!]!
+	foodInfo(input: String!): FoodInfo!
+	me: User!
+	recipe(id: String!): Recipe
 	recipeCategories: [RecipeCategory!]!
 	recipes: [Recipe!]!
-	recipe(id: String!): Recipe
 	recipesByCategory(input: String!): [Recipe!]!
 	recipeSteps(input: String!): [RecipeStep!]!
-	foodInfo(input: String!): FoodInfo!
+	signin(input: UserInput!): User
 }
 
 """
 The Recipe model
 """
 type Recipe {
-	id: ID!
-	title: String!
-	time: String!
 	categoryId: String!
-	steps: [RecipeStep!]!
-	ingredients: [FoodItem!]!
+	id: ID!
 	info: FoodInfo
+	ingredients: [FoodItem!]!
+	steps: [RecipeStep!]!
+	time: String!
+	title: String!
 	userId: String!
 }
 
@@ -106,24 +105,24 @@ type RecipeCategory {
 Steps Of the Recipe
 """
 type RecipeStep {
-	id: ID!
-	title: String!
-	img: String
 	description: String
+	id: ID!
+	img: String
+	title: String!
 }
 
 input RecipeStepInput {
-	title: String!
 	description: String
 	img: String
+	title: String!
 }
 
 """
 The User model
 """
 type User {
-	id: ID!
 	email: String!
+	id: ID!
 }
 
 input UserInput {
