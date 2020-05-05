@@ -123,9 +123,11 @@ The User model
 type User {
 	email: String!
 	id: ID!
+	username: String!
 }
 
 input UserInput {
 	email: String!
 	password: String!
+	username: String!
 }

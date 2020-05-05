@@ -11,6 +11,10 @@ export class User {
 	@prop({ required: true, unique: true })
 	email!: string;
 
+	@Field()
+	@prop({ required: true, unique: true })
+	username!: string;
+
 	@prop({ required: true })
 	hash!: string;
 }
