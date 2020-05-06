@@ -7,6 +7,7 @@ import {
 	Ctx,
 	FieldResolver,
 	Root,
+	Args,
 } from "type-graphql";
 import { Recipe, RecipeModel } from "../entities/Recipe";
 import {
@@ -18,12 +19,13 @@ import { CreateRecipeInput } from "../inputs/RecipeInput";
 import { Context } from "../config/context";
 import BedcaAPI from "../dataSources/BedcaAPI";
 import { FoodItemInput } from "../inputs/FoodItemInput";
+import { PaginationArgs } from "./PaginationArgs";
 
 @Resolver((_of) => Recipe)
 export default class RecipeResolver {
 	@Query((_returns) => [Recipe], { nullable: false })
-	recipes() {
-		return RecipeModel.find().exec();
+	recipes(@Args() { skip, limit }: PaginationArgs) {
+		return RecipeModel.find().skip(skip).limit(limit).exec();
 	}
 
 	@Query((_returns) => Recipe, { nullable: true })
@@ -88,7 +90,9 @@ function mergeFoodValues(foodValues: any) {
 function recipeInfoHook(ingredients: Array<FoodItemInput>, bedcaApi: BedcaAPI) {
 	return Promise.all(
 		ingredients.map((ingredient) =>
-			bedcaApi.getFood(ingredient.id).then((foodInfo) => foodInfo.foodValues)
+			bedcaApi
+				.getFood(ingredient.id)
+				.then((foodInfo) => foodInfo && foodInfo.foodValues)
 		)
 	).then((values) => values.flat());
 }

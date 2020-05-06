@@ -74,7 +74,7 @@ type Query {
 	me: User!
 	recipe(id: String!): Recipe
 	recipeCategories: [RecipeCategory!]!
-	recipes: [Recipe!]!
+	recipes(limit: Int = 5, skip: Int = 0): [Recipe!]!
 	recipesByCategory(input: String!): [Recipe!]!
 	recipeSteps(input: String!): [RecipeStep!]!
 	signin(input: UserInput!): User
