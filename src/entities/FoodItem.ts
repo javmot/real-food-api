@@ -3,7 +3,7 @@ import { prop } from "@typegoose/typegoose";
 
 @ObjectType({ description: "The bedca Food Item" })
 export class FoodItem {
-	@Field(() => ID)
+	@Field((_type) => ID)
 	@prop({ required: true })
 	id!: string;
 
