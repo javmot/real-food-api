@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from "type-graphql";
-import { prop, arrayProp, getModelForClass } from "@typegoose/typegoose";
+import { prop, arrayProp } from "@typegoose/typegoose";
 import { FoodValue } from "./FoodValue";
 
 @ObjectType({ description: "The bedca Food Item Info" })
