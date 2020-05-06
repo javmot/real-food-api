@@ -2,7 +2,11 @@ import { FoodValueInterface } from "../entities/FoodValue";
 import { FoodInfoInterface } from "../entities/FoodInfo";
 import foodValuesProxy from "./foodValuesProxy";
 
-export default function foodInfoProxy(foodInfoBedca: any): FoodInfoInterface {
+export default function foodInfoProxy(
+	foodInfoBedca: any
+): FoodInfoInterface | null {
+	if (!foodInfoBedca) return null;
+
 	return {
 		get id(): string {
 			return foodInfoBedca && foodInfoBedca.f_id && foodInfoBedca.f_id[0];

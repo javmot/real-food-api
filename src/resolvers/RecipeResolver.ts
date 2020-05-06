@@ -1,6 +1,19 @@
 import { groupBy, map } from "lodash";
-import { Resolver, Arg, Query, Mutation, Ctx } from "type-graphql";
+import {
+	Resolver,
+	Arg,
+	Query,
+	Mutation,
+	Ctx,
+	FieldResolver,
+	Root,
+} from "type-graphql";
 import { Recipe, RecipeModel } from "../entities/Recipe";
+import {
+	RecipeCategory,
+	RecipeCategoryModel,
+} from "../entities/RecipeCategory";
+import { User, UserModel } from "../entities/User";
 import { CreateRecipeInput } from "../inputs/RecipeInput";
 import { Context } from "../config/context";
 import BedcaAPI from "../dataSources/BedcaAPI";
@@ -40,6 +53,16 @@ export default class RecipeResolver {
 				foodValues: mergeFoodValues(foodValues),
 			},
 		});
+	}
+
+	@FieldResolver((_type) => RecipeCategory)
+	category(@Root() recipe: any) {
+		return RecipeCategoryModel.findById(recipe.categoryId);
+	}
+
+	@FieldResolver((_type) => User)
+	user(@Root() recipe: any) {
+		return UserModel.findById(recipe.userId);
 	}
 }
 

@@ -27,11 +27,12 @@ type FoodGroup {
 The bedca Food Item Info
 """
 type FoodInfo {
-	"""
-	Param profile defines detail info level:
-				0 - Energy, 1 - Macros, 2 - Detailed, 3 - All (default)
-	"""
-	foodValues(profile: Float = 3): [FoodValue!]!
+	foodValues(
+		"""
+		Defines detail level: 0 -> Energy, 1 -> Macros, 2 -> Detailed, 3 -> All (default)
+		"""
+		profile: Float = 3
+	): [FoodValue!]!
 	id: ID!
 	name: String
 }
@@ -69,7 +70,7 @@ type Mutation {
 type Query {
 	foodGroup(input: String!): [FoodItem!]!
 	foodGroups: [FoodGroup!]!
-	foodInfo(input: String!): FoodInfo!
+	foodInfo(input: String!): FoodInfo
 	me: User!
 	recipe(id: String!): Recipe
 	recipeCategories: [RecipeCategory!]!
@@ -83,6 +84,7 @@ type Query {
 The Recipe model
 """
 type Recipe {
+	category: RecipeCategory!
 	categoryId: String!
 	id: ID!
 	info: FoodInfo
@@ -90,6 +92,7 @@ type Recipe {
 	steps: [RecipeStep!]!
 	time: String!
 	title: String!
+	user: User!
 	userId: String!
 }
 

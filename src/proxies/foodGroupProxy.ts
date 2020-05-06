@@ -2,7 +2,9 @@ import { FoodGroupInterface } from "../entities/FoodGroup";
 
 export default function foodGroupProxy(
 	foodGroupBedca: any
-): FoodGroupInterface {
+): FoodGroupInterface | null {
+	if (!foodGroupBedca) return null;
+
 	return {
 		get id(): string {
 			return foodGroupBedca && foodGroupBedca.fg_id && foodGroupBedca.fg_id[0];

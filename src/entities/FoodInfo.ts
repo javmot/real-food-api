@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID } from "type-graphql";
 import { prop, arrayProp, getModelForClass } from "@typegoose/typegoose";
-import { FoodValue, FoodValueInterface } from "./FoodValue";
+import { FoodValue } from "./FoodValue";
 
 @ObjectType({ description: "The bedca Food Item Info" })
 export class FoodInfo {
@@ -11,18 +11,11 @@ export class FoodInfo {
 	@prop()
 	name?: string;
 
-	@Field((_type) => [FoodValue], {
-		description: `Param profile defines detail info level:
-			0 - Energy, 1 - Macros, 2 - Detailed, 3 - All (default)`,
-	})
+	@Field((_type) => [FoodValue])
 	@arrayProp({ items: FoodValue, required: true })
-	foodValues!: (profile: number) => FoodValue[];
+	foodValues!: FoodValue[];
 }
 
 export const FoodInfoModel = getModelForClass(FoodInfo);
 
-export interface FoodInfoInterface {
-	id: string;
-	name: string;
-	foodValues: Array<FoodValueInterface>;
-}
+export interface FoodInfoInterface extends FoodInfo {}

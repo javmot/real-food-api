@@ -2,7 +2,9 @@ import { FoodValueInterface } from "../entities/FoodValue";
 
 export default function foodValueProxy(
 	foodValueBedca: any
-): FoodValueInterface {
+): FoodValueInterface | null {
+	if (!foodValueBedca) return null;
+
 	return {
 		get id(): string {
 			return foodValueBedca && foodValueBedca.c_id && foodValueBedca.c_id[0];
