@@ -16,6 +16,4 @@ export class FoodInfo {
 	foodValues!: FoodValue[];
 }
 
-export const FoodInfoModel = getModelForClass(FoodInfo);
-
 export interface FoodInfoInterface extends FoodInfo {}
