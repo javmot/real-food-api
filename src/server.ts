@@ -33,9 +33,9 @@ const main = async () => {
 	const server = new ApolloServer({ schema, dataSources, context });
 	const app = Express();
 	server.applyMiddleware({ app });
-	app.listen({ port: 3333 }, () =>
+	app.listen({ port: 9002 }, () =>
 		console.log(
-			`🚀 Server ready and listening at ==> http://localhost:3333${server.graphqlPath}`
+			`🚀 Server ready and listening at ==> http://localhost:9002${server.graphqlPath}`
 		)
 	);
 };

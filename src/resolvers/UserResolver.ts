@@ -1,4 +1,4 @@
-import { Resolver, Arg, Query, Mutation } from "type-graphql";
+import { Resolver, Arg, Query, Mutation, FieldResolver } from "type-graphql";
 import bcrypt from "bcrypt";
 import { User, UserModel } from "../entities/User";
 import { UserInput } from "../inputs/UserInput";
@@ -35,5 +35,10 @@ export default class UserResolver {
 			email: userInput.email,
 			hash: await bcrypt.hash(userInput.password, 8),
 		});
+	}
+
+	@FieldResolver((_type) => String)
+	username() {
+		return "username";
 	}
 }

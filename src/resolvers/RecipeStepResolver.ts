@@ -1,4 +1,4 @@
-import { Resolver, Query, Arg } from "type-graphql";
+import { Resolver, Query, Arg, FieldResolver } from "type-graphql";
 import { RecipeStep } from "../entities/RecipeStep";
 import { RecipeModel } from "../entities/Recipe";
 
