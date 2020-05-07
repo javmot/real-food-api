@@ -43,8 +43,8 @@ function getFakeRecipeSteps(): RecipeStepInterface[] {
 }
 
 function getFakeRecipe(
-	categories: Array<any>,
-	users: Array<any>
+	users: Array<any>,
+	categories: Array<any>
 ): RecipeInterface {
 	const defaultObj: any = {};
 	const category = sample(categories) || defaultObj;
