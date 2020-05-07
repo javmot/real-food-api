@@ -1,4 +1,4 @@
-import { Resolver, Arg, Query, Ctx, FieldResolver, Float } from "type-graphql";
+import { Resolver, Arg, Query, Ctx } from "type-graphql";
 import { FoodItem } from "../entities/FoodItem";
 import { Context } from "../config/context";
 
@@ -11,15 +11,5 @@ export default class FoodItemResolver {
 	) {
 		const items = await dataSources.bedcaAPI.getFoodGroup(groupId);
 		return items;
-	}
-
-	@FieldResolver((_type) => Float)
-	quantity() {
-		return Math.random() * 10;
-	}
-
-	@FieldResolver((_type) => String)
-	unit() {
-		return "g";
 	}
 }

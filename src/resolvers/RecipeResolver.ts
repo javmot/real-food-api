@@ -18,7 +18,7 @@ import { User, UserModel } from "../entities/User";
 import { CreateRecipeInput } from "../inputs/RecipeInput";
 import { Context } from "../config/context";
 import BedcaAPI from "../dataSources/BedcaAPI";
-import { FoodItemInput } from "../inputs/FoodItemInput";
+import { IngredientInput } from "../inputs/IngredientInput";
 import { PaginationArgs } from "./PaginationArgs";
 
 @Resolver((_of) => Recipe)
@@ -87,7 +87,10 @@ function mergeFoodValues(foodValues: any) {
 	});
 }
 
-function recipeInfoHook(ingredients: Array<FoodItemInput>, bedcaApi: BedcaAPI) {
+function recipeInfoHook(
+	ingredients: Array<IngredientInput>,
+	bedcaApi: BedcaAPI
+) {
 	return Promise.all(
 		ingredients.map((ingredient) =>
 			bedcaApi

@@ -3,7 +3,7 @@ import { prop, arrayProp, index, getModelForClass } from "@typegoose/typegoose";
 import { Ref } from "../types";
 import { User } from "./User";
 import { RecipeStep } from "./RecipeStep";
-import { FoodItem } from "./FoodItem";
+import { Ingredient } from "./Ingredient";
 import { FoodInfo } from "./FoodInfo";
 import { RecipeCategory } from "./RecipeCategory";
 
@@ -30,9 +30,9 @@ export class Recipe {
 	@arrayProp({ items: RecipeStep, required: true })
 	steps!: RecipeStep[];
 
-	@Field((_type) => FoodItem)
-	@arrayProp({ items: FoodItem, required: true })
-	ingredients!: FoodItem[];
+	@Field((_type) => Ingredient)
+	@arrayProp({ items: Ingredient, required: true })
+	ingredients!: Ingredient[];
 
 	@Field((_type) => FoodInfo, { nullable: true })
 	@prop({ type: FoodInfo })
@@ -44,3 +44,5 @@ export class Recipe {
 }
 
 export const RecipeModel = getModelForClass(Recipe);
+
+export interface RecipeInterface extends Recipe {}

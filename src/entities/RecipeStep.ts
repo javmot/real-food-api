@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from "type-graphql";
-import { prop } from "@typegoose/typegoose";
+import { prop, getModelForClass } from "@typegoose/typegoose";
 
 @ObjectType({ description: "Steps Of the Recipe" })
 export class RecipeStep {
@@ -19,3 +19,7 @@ export class RecipeStep {
 	@prop()
 	description?: string;
 }
+
+export interface RecipeStepInterface extends RecipeStep {}
+
+export const RecipeStepModel = getModelForClass(RecipeStep);

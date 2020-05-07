@@ -9,7 +9,7 @@ input CreateRecipeCategoryInput {
 
 input CreateRecipeInput {
 	categoryId: String!
-	ingredients: [FoodItemInput!]!
+	ingredients: [IngredientInput!]!
 	steps: [RecipeStepInput!]!
 	time: String!
 	title: String!
@@ -40,15 +40,8 @@ type FoodInfo {
 """
 The bedca Food Item
 """
-type FoodItem {
+type FoodItem implements IFoodItem {
 	id: ID!
-	name: String!
-	quantity: Float!
-	unit: String!
-}
-
-input FoodItemInput {
-	id: String!
 	name: String!
 }
 
@@ -61,6 +54,28 @@ type FoodValue {
 	name: String
 	total: Float
 	unit: String
+}
+
+interface IFoodItem {
+	id: ID!
+	name: String!
+}
+
+"""
+The bedca Food Item
+"""
+type Ingredient implements IFoodItem {
+	id: ID!
+	name: String!
+	quantity: Float!
+	unit: UnitEnum!
+}
+
+input IngredientInput {
+	id: String!
+	name: String!
+	quantity: Float!
+	unit: UnitEnum!
 }
 
 type Mutation {
@@ -90,7 +105,7 @@ type Recipe {
 	categoryId: String!
 	id: ID!
 	info: FoodInfo
-	ingredients: [FoodItem!]!
+	ingredients: [Ingredient!]!
 	steps: [RecipeStep!]!
 	time: String!
 	title: String!
@@ -120,6 +135,11 @@ input RecipeStepInput {
 	description: String
 	img: String
 	title: String!
+}
+
+enum UnitEnum {
+	GRAMS
+	TABLESPOON
 }
 
 """

@@ -13,3 +13,5 @@ export class RecipeCategory {
 }
 
 export const RecipeCategoryModel = getModelForClass(RecipeCategory);
+
+export interface RecipeCategoryInterface extends RecipeCategory {}

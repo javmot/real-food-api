@@ -1,14 +1,10 @@
-import { ObjectType, Field, ID } from "type-graphql";
-import { prop } from "@typegoose/typegoose";
+import { ObjectType } from "type-graphql";
+import { IFoodItem } from "./IFoodItem";
 
-@ObjectType({ description: "The bedca Food Item" })
+@ObjectType({ implements: IFoodItem, description: "The bedca Food Item" })
 export class FoodItem {
-	@Field((_type) => ID)
-	@prop({ required: true })
 	id!: string;
 
-	@Field()
-	@prop({ required: true })
 	name!: string;
 }
 
