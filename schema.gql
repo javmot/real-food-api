@@ -9,8 +9,7 @@ input CreateRecipeCategoryInput {
 
 input CreateRecipeInput {
 	categoryId: String!
-	ingredients: [IngredientInput!]!
-	steps: [RecipeStepInput!]!
+	servings: Float!
 	time: String!
 	title: String!
 }
@@ -76,13 +75,6 @@ type Ingredient implements IFoodItem {
 	unit: UnitEnum!
 }
 
-input IngredientInput {
-	id: String!
-	name: String!
-	quantity: Float!
-	unit: UnitEnum!
-}
-
 type Mutation {
 	createRecipe(input: CreateRecipeInput!): Recipe!
 	createRecipeCategory(input: CreateRecipeCategoryInput!): RecipeCategory!
@@ -95,6 +87,7 @@ type Query {
 	foodInfo(input: String!): FoodInfo
 	me: User!
 	recipe(id: String!): Recipe
+	recipeByUserAndTitle(title: String!, username: String!): Recipe
 	recipeCategories: [RecipeCategory!]!
 	recipes(limit: Int = 5, skip: Int = 0): [Recipe!]!
 	recipesByCategory(input: String!): [Recipe!]!
@@ -112,6 +105,7 @@ type Recipe {
 	id: ID!
 	info: FoodInfo
 	ingredients: [Ingredient!]!
+	servings: Int!
 	steps: [RecipeStep!]!
 	time: String!
 	title: String!
@@ -134,12 +128,6 @@ Steps Of the Recipe
 type RecipeStep {
 	description: String
 	id: ID!
-	img: String
-	title: String!
-}
-
-input RecipeStepInput {
-	description: String
 	img: String
 	title: String!
 }

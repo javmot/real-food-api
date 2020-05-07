@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from "type-graphql";
+import { ObjectType, Field, ID, Int } from "type-graphql";
 import { prop, arrayProp, index, getModelForClass } from "@typegoose/typegoose";
 import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 import { Ref } from "../types";
@@ -23,16 +23,20 @@ export class Recipe extends TimeStamps {
 	@prop({ required: true })
 	time!: string;
 
+	@Field((_type) => Int)
+	@prop({ required: true })
+	servings!: number;
+
 	@Field((_type) => String)
 	@prop({ ref: RecipeCategory, required: true })
 	categoryId!: Ref<RecipeCategory>;
 
 	@Field((_type) => RecipeStep)
-	@arrayProp({ items: RecipeStep, required: true })
+	@arrayProp({ items: RecipeStep, default: [] })
 	steps!: RecipeStep[];
 
 	@Field((_type) => Ingredient)
-	@arrayProp({ items: Ingredient, required: true })
+	@arrayProp({ items: Ingredient, default: [] })
 	ingredients!: Ingredient[];
 
 	@Field((_type) => FoodInfo, { nullable: true })
@@ -42,6 +46,9 @@ export class Recipe extends TimeStamps {
 	@Field((_type) => String)
 	@prop({ ref: User, required: true })
 	userId!: Ref<User>;
+
+	@prop({ default: false })
+	active!: boolean;
 
 	@Field()
 	createdAt!: Date;

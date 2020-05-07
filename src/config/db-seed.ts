@@ -57,6 +57,7 @@ function getFakeRecipe(
 		userId: user._id,
 		ingredients: getFakeIngredients(),
 		steps: getFakeRecipeSteps(),
+		active: true,
 		createdAt: new Date(),
 		updatedAt: new Date(),
 	};

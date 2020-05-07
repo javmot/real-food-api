@@ -25,12 +25,35 @@ import { PaginationArgs } from "./PaginationArgs";
 export default class RecipeResolver {
 	@Query((_returns) => [Recipe], { nullable: false })
 	recipes(@Args() { skip, limit }: PaginationArgs) {
-		return RecipeModel.find().skip(skip).limit(limit).exec();
+		return RecipeModel.find()
+			.sort([["updatedAt", -1]])
+			.skip(skip)
+			.limit(limit)
+			.exec();
 	}
 
 	@Query((_returns) => Recipe, { nullable: true })
 	recipe(@Arg("id") id: string) {
 		return RecipeModel.findById(id).exec();
+	}
+
+	@Query((_returns) => Recipe, { nullable: true })
+	async recipeByUserAndTitle(
+		@Arg("username") username: string,
+		@Arg("title") title: string
+	) {
+		const user = await UserModel.findOne({
+			username,
+		});
+
+		if (user) {
+			return RecipeModel.findOne({
+				userId: user._id,
+				title,
+			}).exec();
+		}
+
+		return null;
 	}
 
 	@Query((_returns) => [Recipe], { nullable: false })
@@ -41,19 +64,11 @@ export default class RecipeResolver {
 	@Mutation((_returns) => Recipe, { nullable: false })
 	async createRecipe(
 		@Arg("input") recipeInput: CreateRecipeInput,
-		@Ctx() { user, dataSources }: Context
+		@Ctx() { user }: Context
 	) {
-		const foodValues = await recipeInfoHook(
-			recipeInput.ingredients,
-			dataSources.bedcaAPI
-		);
 		return RecipeModel.create({
 			...recipeInput,
 			userId: user,
-			info: {
-				name: recipeInput.title,
-				foodValues: mergeFoodValues(foodValues),
-			},
 		});
 	}
 
