@@ -34,6 +34,7 @@ const main = async () => {
 	const app = Express();
 	server.applyMiddleware({ app });
 	app.listen({ port: 9002 }, () =>
+		// eslint-disable-next-line no-console
 		console.log(
 			`🚀 Server ready and listening at ==> http://localhost:9002${server.graphqlPath}`
 		)
@@ -41,5 +42,6 @@ const main = async () => {
 };
 
 main().catch((error) => {
+	// eslint-disable-next-line no-console
 	console.log(error, "error");
 });

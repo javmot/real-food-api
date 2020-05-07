@@ -8,12 +8,7 @@ import { RecipeInterface } from "../entities/Recipe";
 import { IngredientInterface } from "../entities/Ingredient";
 import { RecipeStepInterface } from "../entities/RecipeStep";
 import { UnitEnum } from "../entities/UnitEnum";
-
-// Connection URL
-const url = "mongodb://localhost:27017";
-
-// Database Name
-const dbName = "test";
+import { DB_DEV } from "./db";
 
 function getFakeUser(): UserInterface {
 	const username = uniqueId(faker.name.firstName());
@@ -33,7 +28,7 @@ function getFakeCategory(): RecipeCategoryInterface {
 function getFakeIngredients(): IngredientInterface[] {
 	return times(Math.round(faker.random.number(10))).map(() => ({
 		_id: new ObjectID(),
-		name: faker.commerce.productName(),
+		name: faker.commerce.product(),
 		quantity: faker.random.number(100),
 		unit: UnitEnum.GRAMS,
 	}));
@@ -56,7 +51,7 @@ function getFakeRecipe(
 	const user = sample(users) || defaultObj;
 
 	return {
-		title: faker.commerce.product(),
+		title: faker.commerce.productName(),
 		time: `${Math.round(faker.random.number(40))} minutos`,
 		categoryId: category._id,
 		userId: user._id,
@@ -66,12 +61,12 @@ function getFakeRecipe(
 }
 
 MongoClient.connect(
-	url,
+	DB_DEV,
 	{
 		useUnifiedTopology: true,
 	},
 	async function cb(_err, client) {
-		const db = client.db(dbName);
+		const db = client.db();
 		db.dropDatabase();
 
 		const usersCollection = db.collection("users");
@@ -99,6 +94,7 @@ MongoClient.connect(
 		}
 		await recipesCollection.insertMany(recipes);
 
+		// eslint-disable-next-line no-console
 		console.log("Database seeded! :)");
 		client.close();
 	}
