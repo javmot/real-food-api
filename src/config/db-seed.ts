@@ -57,6 +57,8 @@ function getFakeRecipe(
 		userId: user._id,
 		ingredients: getFakeIngredients(),
 		steps: getFakeRecipeSteps(),
+		createdAt: new Date(),
+		updatedAt: new Date(),
 	};
 }
 
@@ -73,26 +75,18 @@ MongoClient.connect(
 		const categoriesCollection = db.collection("recipecategories");
 		const recipesCollection = db.collection("recipes");
 
-		const users: Array<UserInterface> = [];
-		for (let i = 0; i < 20; i += 1) {
-			users.push(getFakeUser());
-		}
-		await usersCollection.insertMany(users);
+		await usersCollection.insertMany(times(20).map(() => getFakeUser()));
 
-		const categories: Array<RecipeCategoryInterface> = [];
-		for (let i = 0; i < 6; i += 1) {
-			categories.push(getFakeCategory());
-		}
-		await categoriesCollection.insertMany(categories);
+		await categoriesCollection.insertMany(
+			times(3).map(() => getFakeCategory())
+		);
 
 		const usersDocs = await usersCollection.find().toArray();
 		const categoriesDocs = await categoriesCollection.find().toArray();
 
-		const recipes: Array<RecipeInterface> = [];
-		for (let i = 0; i < 50; i += 1) {
-			recipes.push(getFakeRecipe(usersDocs, categoriesDocs));
-		}
-		await recipesCollection.insertMany(recipes);
+		await recipesCollection.insertMany(
+			times(50).map(() => getFakeRecipe(usersDocs, categoriesDocs))
+		);
 
 		// eslint-disable-next-line no-console
 		console.log("Database seeded! :)");

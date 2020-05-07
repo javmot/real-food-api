@@ -16,6 +16,11 @@ input CreateRecipeInput {
 }
 
 """
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+"""
 The bedca Food Group
 """
 type FoodGroup {
@@ -103,12 +108,14 @@ The Recipe model
 type Recipe {
 	category: RecipeCategory!
 	categoryId: String!
+	createdAt: DateTime!
 	id: ID!
 	info: FoodInfo
 	ingredients: [Ingredient!]!
 	steps: [RecipeStep!]!
 	time: String!
 	title: String!
+	updatedAt: DateTime!
 	user: User!
 	userId: String!
 }

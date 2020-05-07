@@ -22,4 +22,6 @@ export class RecipeStep {
 
 export interface RecipeStepInterface extends RecipeStep {}
 
-export const RecipeStepModel = getModelForClass(RecipeStep);
+export const RecipeStepModel = getModelForClass(RecipeStep, {
+	schemaOptions: { timestamps: true },
+});
