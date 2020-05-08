@@ -49,14 +49,20 @@ function getFakeRecipe(
 	const defaultObj: any = {};
 	const category = sample(categories) || defaultObj;
 	const user = sample(users) || defaultObj;
+	const title = faker.commerce.productName();
 
 	return {
-		title: faker.commerce.productName(),
+		title,
 		time: `${Math.round(faker.random.number(40))} minutos`,
+		servings: Math.round(faker.random.number(6)),
 		categoryId: category._id,
 		userId: user._id,
 		ingredients: getFakeIngredients(),
 		steps: getFakeRecipeSteps(),
+		info: {
+			name: title,
+			foodValues: [],
+		},
 		active: true,
 		createdAt: new Date(),
 		updatedAt: new Date(),

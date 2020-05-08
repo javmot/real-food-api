@@ -40,8 +40,8 @@ export class Recipe extends TimeStamps {
 	ingredients!: Ingredient[];
 
 	@Field((_type) => FoodInfo, { nullable: true })
-	@prop({ type: FoodInfo })
-	info?: FoodInfo;
+	@prop({ type: FoodInfo, default: {} })
+	info!: FoodInfo;
 
 	@Field((_type) => String)
 	@prop({ ref: User, required: true })

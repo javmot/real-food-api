@@ -9,7 +9,7 @@
 		"start": "ts-node src/server.ts",
 		"pre-commit": "pretty-quick --staged && lint-staged",
 		"lint": "pretty-quick && eslint src/**/*.{ts,js} --cache --fix",
-		"seed": "ts-node src/config/db-seed.ts"
+		"reset-db": "ts-node src/config/db-seed.ts"
 	},
 	"dependencies": {
 		"apollo-datasource-rest": "^0.8.1",

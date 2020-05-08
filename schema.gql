@@ -75,7 +75,15 @@ type Ingredient implements IFoodItem {
 	unit: UnitEnum!
 }
 
+input IngredientInput {
+	id: String!
+	name: String!
+	quantity: Float!
+	unit: UnitEnum!
+}
+
 type Mutation {
+	addIngredient(id: String!, ingredient: IngredientInput!): Recipe
 	createRecipe(input: CreateRecipeInput!): Recipe!
 	createRecipeCategory(input: CreateRecipeCategoryInput!): RecipeCategory!
 	signup(input: UserInput!): User!

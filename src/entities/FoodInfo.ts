@@ -12,7 +12,7 @@ export class FoodInfo {
 	name?: string;
 
 	@Field((_type) => [FoodValue])
-	@arrayProp({ items: FoodValue, required: true })
+	@arrayProp({ items: FoodValue, default: [] })
 	foodValues!: FoodValue[];
 }
 

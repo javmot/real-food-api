@@ -69,7 +69,36 @@ export default class RecipeResolver {
 		return RecipeModel.create({
 			...recipeInput,
 			userId: user,
+			foodInfo: { name: recipeInput.title },
 		});
+	}
+
+	@Mutation((_returns) => Recipe, { nullable: true })
+	async addIngredient(
+		@Arg("id") id: string,
+		@Arg("ingredient") ingredient: IngredientInput,
+		@Ctx() { dataSources }: Context
+	) {
+		const recipe = await RecipeModel.findOne({
+			_id: id,
+			// TODO: user,
+		});
+		if (!recipe) return null;
+
+		const { foodValues } = recipe.info;
+		const ingredientFoodValues = await recipeInfoHook(
+			[ingredient],
+			dataSources.bedcaAPI
+		);
+		const newFoodValues = mergeFoodValues([
+			...foodValues,
+			...ingredientFoodValues,
+		]);
+
+		recipe.ingredients = [...recipe.ingredients, ingredient];
+		recipe.info.foodValues = newFoodValues;
+
+		return recipe.save();
 	}
 
 	@FieldResolver((_type) => RecipeCategory)
