@@ -69,7 +69,7 @@ export default class RecipeResolver {
 		return RecipeModel.create({
 			...recipeInput,
 			userId: user,
-			foodInfo: { name: recipeInput.title },
+			info: { name: recipeInput.title, foodValues: [] },
 		});
 	}
 

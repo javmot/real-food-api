@@ -6,7 +6,7 @@ import { getInfoProfile } from "../config/infoProfile";
 const getFoodValues = (foodValues: Array<any>, profile: number) => {
 	const infoProfile = getInfoProfile(profile);
 
-	return infoProfile.length
+	return infoProfile.length && foodValues.length
 		? infoProfile.map((valueId) =>
 				foodValues.find((value) => value.bedcaId === valueId)
 		  )
