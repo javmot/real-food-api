@@ -30,7 +30,6 @@ export default class FoodInfoResolver {
 		profile: number,
 		@Root() foodInfo: any
 	) {
-		const values = getFoodValues(foodInfo.foodValues, profile);
-		return values;
+		return getFoodValues(foodInfo.foodValues, profile);
 	}
 }
