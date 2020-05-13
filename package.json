@@ -1,6 +1,6 @@
 {
-	"name": "real-food-api",
-	"version": "1.0.0",
+	"name": "@real-food/api",
+	"version": "0.1.0",
 	"main": "index.js",
 	"author": "Javier Mota (javimota83@gmail.com)",
 	"license": "MIT",
